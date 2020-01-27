@@ -150,6 +150,71 @@ void Game::initialize()
 	vertex[2].color[2] = 0.5f;
 	vertex[2].color[3] = 1.0f;
 
+	vertex[3].color[0] = 0.5f;
+	vertex[3].color[1] = 0.0f;
+	vertex[3].color[2] = 0.5f;
+	vertex[3].color[3] = 1.0f;
+
+	vertex[4].color[0] = 0.5f;
+	vertex[4].color[1] = 0.0f;
+	vertex[4].color[2] = 0.5f;
+	vertex[4].color[3] = 1.0f;
+
+	vertex[5].color[0] = 0.5f;
+	vertex[5].color[1] = 0.0f;
+	vertex[5].color[2] = 0.5f;
+	vertex[5].color[3] = 1.0f;
+
+	vertex[6].color[0] = 0.5f;
+	vertex[6].color[1] = 0.0f;
+	vertex[6].color[2] = 0.5f;
+	vertex[6].color[3] = 1.0f;
+
+	vertex[7].color[0] = 0.5f;
+	vertex[7].color[1] = 0.0f;
+	vertex[7].color[2] = 0.5f;
+	vertex[7].color[3] = 1.0f;
+
+	/*vertex[0].color[0] = 0.3f;
+	vertex[0].color[1] = 0.3f;
+	vertex[0].color[2] = 0.3f;
+	vertex[0].color[3] = 1.0f;
+
+	vertex[1].color[0] = 0.4f;
+	vertex[1].color[1] = 0.4f;
+	vertex[1].color[2] = 0.4f;
+	vertex[1].color[3] = 1.0f;
+
+	vertex[2].color[0] = 0.5f;
+	vertex[2].color[1] = 0.5f;
+	vertex[2].color[2] = 0.5f;
+	vertex[2].color[3] = 1.0f;
+
+	vertex[3].color[0] = 0.6f;
+	vertex[3].color[1] = 0.6f;
+	vertex[3].color[2] = 0.6f;
+	vertex[3].color[3] = 1.0f;
+
+	vertex[4].color[0] = 0.7f;
+	vertex[4].color[1] = 0.7f;
+	vertex[4].color[2] = 0.7f;
+	vertex[4].color[3] = 1.0f;
+
+	vertex[5].color[0] = 0.8f;
+	vertex[5].color[1] = 0.8f;
+	vertex[5].color[2] = 0.8f;
+	vertex[5].color[3] = 1.0f;
+
+	vertex[6].color[0] = 0.9f;
+	vertex[6].color[1] = 0.9f;
+	vertex[6].color[2] = 0.9f;
+	vertex[6].color[3] = 1.0f;
+
+	vertex[7].color[0] = 1.0f;
+	vertex[7].color[1] = 1.0f;
+	vertex[7].color[2] = 1.0f;
+	vertex[7].color[3] = 1.0f;*/
+
 	/// <summary>
 	/// Index of Poly / Triangle to Draw
 	/// </summary>
@@ -214,7 +279,7 @@ void Game::initialize()
 		"in vec4 color;"
 		"out vec4 fColor;"
 		"void main() {"
-		"	fColor = color + vec4(0.0f, 1.0f, 0.0f, 1.0f);"
+		"	fColor = color + vec4(1.0f, 1.0f, 1.0f, 1.0f);"
 		"}"; //Fragment Shader Src
 
 	DEBUG_MSG("Setting Up Fragment Shader");
@@ -271,7 +336,13 @@ void Game::update()
 
 	}
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		window.close();
+	}
+
 	controlCube();
+	//unload();
 
 #if (DEBUG >= 2)
 	DEBUG_MSG("Update up...");
@@ -303,7 +374,7 @@ void Game::render()
 	// Set pointers for each parameter
 	// https://www.opengl.org/sdk/docs/man4/html/glVertexAttribPointer.xhtml
 	glVertexAttribPointer(positionID, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-	glVertexAttribPointer(colorID, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (float*)NULL+3);
+	glVertexAttribPointer(colorID, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (float*)NULL + 8);
 
 	//Enable Arrays
 	glEnableVertexAttribArray(positionID);
