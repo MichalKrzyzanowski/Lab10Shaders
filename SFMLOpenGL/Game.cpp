@@ -175,46 +175,6 @@ void Game::initialize()
 	vertex[7].color[2] = 0.5f;
 	vertex[7].color[3] = 1.0f;
 
-	/*vertex[0].color[0] = 0.3f;
-	vertex[0].color[1] = 0.3f;
-	vertex[0].color[2] = 0.3f;
-	vertex[0].color[3] = 1.0f;
-
-	vertex[1].color[0] = 0.4f;
-	vertex[1].color[1] = 0.4f;
-	vertex[1].color[2] = 0.4f;
-	vertex[1].color[3] = 1.0f;
-
-	vertex[2].color[0] = 0.5f;
-	vertex[2].color[1] = 0.5f;
-	vertex[2].color[2] = 0.5f;
-	vertex[2].color[3] = 1.0f;
-
-	vertex[3].color[0] = 0.6f;
-	vertex[3].color[1] = 0.6f;
-	vertex[3].color[2] = 0.6f;
-	vertex[3].color[3] = 1.0f;
-
-	vertex[4].color[0] = 0.7f;
-	vertex[4].color[1] = 0.7f;
-	vertex[4].color[2] = 0.7f;
-	vertex[4].color[3] = 1.0f;
-
-	vertex[5].color[0] = 0.8f;
-	vertex[5].color[1] = 0.8f;
-	vertex[5].color[2] = 0.8f;
-	vertex[5].color[3] = 1.0f;
-
-	vertex[6].color[0] = 0.9f;
-	vertex[6].color[1] = 0.9f;
-	vertex[6].color[2] = 0.9f;
-	vertex[6].color[3] = 1.0f;
-
-	vertex[7].color[0] = 1.0f;
-	vertex[7].color[1] = 1.0f;
-	vertex[7].color[2] = 1.0f;
-	vertex[7].color[3] = 1.0f;*/
-
 	/// <summary>
 	/// Index of Poly / Triangle to Draw
 	/// </summary>
@@ -247,14 +207,10 @@ void Game::initialize()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	/* Vertex Shader which would normally be loaded from an external file */
-	const char* vs_src = "#version 400\n\r"
-		"in vec4 sv_position;"
-		"in vec4 sv_color;"
-		"out vec4 color;"
-		"void main() {"
-		"	color = sv_color;"
-		"	gl_Position = sv_position;"
-		"}"; //Vertex Shader Src
+	std::string shaderString = loadShader(vertexLocation);
+	const char* vs_src = shaderString.c_str(); //Vertex Shader Src
+
+	std::cout << vs_src << std::endl;
 
 	DEBUG_MSG("Setting Up Vertex Shader");
 
@@ -275,12 +231,15 @@ void Game::initialize()
 	}
 
 	/* Fragment Shader which would normally be loaded from an external file */
-	const char* fs_src = "#version 400\n\r"
+	shaderString = loadShader(fragmentLocation);
+	const char* fs_src = shaderString.c_str();
+		
+		/*"#version 400\n\r"
 		"in vec4 color;"
 		"out vec4 fColor;"
 		"void main() {"
 		"	fColor = color + vec4(1.0f, 1.0f, 1.0f, 1.0f);"
-		"}"; //Fragment Shader Src
+		"}"*/; //Fragment Shader Src
 
 	DEBUG_MSG("Setting Up Fragment Shader");
 
@@ -518,6 +477,55 @@ void Game::controlCube()
 		j++;
 		vertex[i].coordinate[2] = m_points[i].Z;
 		j++;
+	}
+}
+
+std::string Game::loadShader(std::string& t_fileLocation)
+{
+	int index = 0;
+	std::ifstream input;
+
+	input.open(t_fileLocation);
+
+	if (input.is_open())
+	{
+		std::string temp = "";
+		std::string m_string = "";
+
+		while (std::getline(input, temp))
+		{
+			
+			for (index = 0; index < temp.length(); index++)
+			{
+				if (temp.at(index) == '\\')
+				{
+					if (temp.at(index + 1) == 'n')
+					{
+						temp += '\n';
+					}
+
+					else if (temp.at(index + 1) == 'r')
+					{
+						temp += '\r';
+					}
+
+					index++;
+				}
+				else
+				{
+					m_string += temp.at(index);
+				}
+			}
+		}
+
+		input.close();
+
+		return m_string;
+	}
+
+	else
+	{
+		std::cout << "error loading in file." << std::endl;
 	}
 }
 
