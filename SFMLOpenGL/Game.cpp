@@ -135,44 +135,44 @@ void Game::initialize()
 	/// <summary>
 	/// Vertices colors
 	/// </summary>
-	vertex[0].color[0] = 0.5f;
+	vertex[0].color[0] = 0.0f;
 	vertex[0].color[1] = 0.0f;
-	vertex[0].color[2] = 0.5f;
+	vertex[0].color[2] = 0.0f;
 	vertex[0].color[3] = 1.0f;
 
-	vertex[1].color[0] = 0.5f;
+	vertex[1].color[0] = 0.0f;
 	vertex[1].color[1] = 0.0f;
-	vertex[1].color[2] = 0.5f;
+	vertex[1].color[2] = 0.0f;
 	vertex[1].color[3] = 1.0f;
 
-	vertex[2].color[0] = 0.5f;
+	vertex[2].color[0] = 0.0f;
 	vertex[2].color[1] = 0.0f;
-	vertex[2].color[2] = 0.5f;
+	vertex[2].color[2] = 0.0f;
 	vertex[2].color[3] = 1.0f;
 
-	vertex[3].color[0] = 0.5f;
+	vertex[3].color[0] = 0.0f;
 	vertex[3].color[1] = 0.0f;
-	vertex[3].color[2] = 0.5f;
+	vertex[3].color[2] = 0.0f;
 	vertex[3].color[3] = 1.0f;
 
-	vertex[4].color[0] = 0.5f;
+	vertex[4].color[0] = 0.0f;
 	vertex[4].color[1] = 0.0f;
-	vertex[4].color[2] = 0.5f;
+	vertex[4].color[2] = 0.0f;
 	vertex[4].color[3] = 1.0f;
 
-	vertex[5].color[0] = 0.5f;
+	vertex[5].color[0] = 0.0f;
 	vertex[5].color[1] = 0.0f;
-	vertex[5].color[2] = 0.5f;
+	vertex[5].color[2] = 0.0f;
 	vertex[5].color[3] = 1.0f;
 
-	vertex[6].color[0] = 0.5f;
+	vertex[6].color[0] = 0.0f;
 	vertex[6].color[1] = 0.0f;
-	vertex[6].color[2] = 0.5f;
+	vertex[6].color[2] = 0.0f;
 	vertex[6].color[3] = 1.0f;
 
-	vertex[7].color[0] = 0.5f;
+	vertex[7].color[0] = 0.0f;
 	vertex[7].color[1] = 0.0f;
-	vertex[7].color[2] = 0.5f;
+	vertex[7].color[2] = 0.0f;
 	vertex[7].color[3] = 1.0f;
 
 	/// <summary>
@@ -333,7 +333,7 @@ void Game::render()
 	// Set pointers for each parameter
 	// https://www.opengl.org/sdk/docs/man4/html/glVertexAttribPointer.xhtml
 	glVertexAttribPointer(positionID, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-	glVertexAttribPointer(colorID, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (float*)NULL + 8);
+	glVertexAttribPointer(colorID, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (float*)NULL + 1);
 
 	//Enable Arrays
 	glEnableVertexAttribArray(positionID);
